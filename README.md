@@ -1,30 +1,31 @@
-Usage
------
+# canonicalwebteam.yaml_deleted_paths
 
-Import this in urls.py and assign it to urlpatterns
-BEFORE custom urls. (redirects should be hit first)
-e.g:
+Serve `410`s for deleted pages listed in a `deleted.yaml` file.
 
-``` python
-from django_yaml_redirects import load_redirects
+## Usage
 
-urlpatterns = load_redirects()
-urlpatterns += patterns(...)
-```
-
-Format of redirects.yaml
-------------------------
-
-The YAML format is simply key/value pairs, from source to destination:
+Create `deleted.yaml` similar to the following:
 
 ``` yaml
-# redirects.yaml
-
-getubuntu/download_static: http://www.ubuntu.com/netbook/get-ubuntu/download
-
-# Also supports regex:
-testing/.+/alpha1/?:       https://wiki.ubuntu.com/QuantalQuetzal/TechnicalOverview/Alpha1
-
-# And named groups
-placeone/(?P<something>.+)/?: /place2/{something}
+some/path: {"message": "This page is gone!"}
+# etc.
 ```
+
+And a `410.html` template page:
+
+``` html
+<html><body><h1>Deleted</h1><p>{{ message }}</p></body></html>
+```
+
+And add the module to your Django app:
+
+``` python
+# urls.py
+from canonicalwebteam import yaml_deleted_paths
+
+urlpatterns = yaml_deleted_paths.create_views()
+# ...
+```
+
+Now if you visit `http://your-site/some/path` you should see your `410`
+error page.
