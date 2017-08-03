@@ -4,7 +4,7 @@ setup(
     name='canonicalwebteam.yaml-deleted-paths',
     version='0.1.0',
     author='Canonical Webteam',
-    url='https://github.com/ubuntudesign/yaml-deleted-paths',
+    url='https://github.com/canonical-webteam/yaml-deleted-paths',
     packages=[
         'canonicalwebteam.yaml_deleted_paths'
     ],
