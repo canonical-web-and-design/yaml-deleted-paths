@@ -1,3 +1,9 @@
+**Deprecated**
+
+This module has been replaced by [canonicalwebteam.yaml-responses](https://github.com/canonical-webteam/yaml-responses). You should use that instead.
+
+---
+
 # canonicalwebteam.yaml_deleted_paths
 
 Serve `410`s for deleted pages listed in a `deleted.yaml` file.
